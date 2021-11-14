@@ -6,8 +6,17 @@
     "node": "16.x"
   },
   "scripts": {
+    "format": "prettier --write *.js",
+    "lint": "eslint --fix *.js",
+    "fix": "npm run format && npm run lint",
     "start": "node index.js"
   },
   "author": "kaiyu",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "prettier": "^2.4.1"
+  }
 }
