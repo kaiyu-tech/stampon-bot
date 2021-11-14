@@ -14,9 +14,17 @@
   "author": "kaiyu",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^8.0.3",
     "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "request": "^2.88.2"
   }
 }
