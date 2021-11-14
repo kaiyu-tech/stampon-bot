@@ -5,6 +5,9 @@
   "engines": {
     "node": "16.x"
   },
-  "author": "kaiyu-tech",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "kaiyu",
   "license": "MIT"
 }
