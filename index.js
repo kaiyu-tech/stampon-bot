@@ -51,10 +51,16 @@ client.on('interactionCreate', async (interaction) => {
 })
 
 client.on('messageReactionAdd', async (reaction, user) => {
-  if (user.bot || !stamps.includes(reaction._emoji.name)) return
-  if (reaction.message.guildId !== guildId) return
+  if (
+    user.bot ||
+    !stamps.includes(reaction._emoji.name) ||
+    reaction.message.guildId !== guildId
+  )
+    return
 
   if (reaction.partial) await reaction.fetch().catch(console.error)
+
+  if (reaction.message.content === '') return
 
   const member_user = await reaction.message.guild.members.fetch(user)
   const member_author = await reaction.message.guild.members.fetch(
@@ -81,7 +87,11 @@ client.on('messageReactionAdd', async (reaction, user) => {
         author_discriminator: member_author.user.discriminator,
         author_display_name: member_author.displayName,
         author_avatar: member_author.user.avatar,
-        content: reaction.message.content,
+        content: reaction.message.content
+          .replace(/<(:\w+:)\d{18}>?/g, '$1')
+          .replace(/<@!(\d{18})>?/g, (match, p1) => {
+            return '@' + reaction.message.mentions.users.get(p1).username
+          }),
         wrote_at: reaction.message.createdTimestamp
       }
     }
