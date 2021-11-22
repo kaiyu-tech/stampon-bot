@@ -52,6 +52,7 @@ client.on('interactionCreate', async (interaction) => {
 
 client.on('messageReactionAdd', async (reaction, user) => {
   if (user.bot || !stamps.includes(reaction._emoji.name)) return
+  if (reaction.message.guildId !== guildId) return
 
   if (reaction.partial) await reaction.fetch().catch(console.error)
 
