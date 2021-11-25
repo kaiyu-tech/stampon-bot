@@ -63,9 +63,17 @@ client.on('messageReactionAdd', async (reaction, user) => {
   if (reaction.message.content === '') return
 
   const member_user = await reaction.message.guild.members.fetch(user)
-  const member_author = await reaction.message.guild.members.fetch(
-    reaction.message.author
-  )
+
+  let member_author = undefined
+  if (reaction.message.author.flags !== null) {
+    member_author = await reaction.message.guild.members.fetch(
+      reaction.message.author
+    )
+  }
+
+  if (member_author === undefined) {
+    member_author = { user: reaction.message.author, displayName: undefined }
+  }
 
   const options = {
     uri: api_uri,
