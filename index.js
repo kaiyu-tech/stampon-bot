@@ -97,7 +97,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         author_avatar: member_author.user.avatar,
         content: reaction.message.content
           .replace(/<(:\w+:)\d{18}>?/g, '$1')
-          .replace(/<@!(\d{18})>?/g, (match, p1) => {
+          .replace(/<@?(\d{18})>?/g, (match, p1) => {
             return '@' + reaction.message.mentions.users.get(p1).username
           }),
         wrote_at: reaction.message.createdTimestamp
